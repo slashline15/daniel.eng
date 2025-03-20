@@ -1,0 +1,105 @@
+<section id="economy" class="economy">
+    <div class="container">
+        <div class="section-header">
+            <h2>Simulador de Economia com IA</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="economy-content">
+            <div class="economy-simulator fade-in" data-animation="zoom-in">
+                <div class="economy-intro">
+                    <h3>Descubra quanto você pode economizar</h3>
+                    <p>A automação com IA pode reduzir custos e aumentar a eficiência nos seus projetos de construção
+                        civil.
+                        Simule agora mesmo o potencial de economia!</p>
+                </div>
+
+                <div class="economy-simulator-container">
+                    <div class="simulator-controls">
+                        <form id="economyForm">
+                            <div class="form-group slider-group">
+                                <label for="projectValue">Valor do Projeto (R$)</label>
+                                <div class="slider-container">
+                                    <input type="range" id="projectValueSlider" min="50000" max="10000000" step="50000"
+                                        value="500000">
+                                    <div class="value-display">
+                                        <input type="number" id="projectValue" name="projectValue" value="500000"
+                                            min="50000" max="10000000">
+                                    </div>
+                                </div>
+                                <div class="slider-markers">
+                                    <span>R$ 50 mil</span>
+                                    <span>R$ 10 milhões</span>
+                                </div>
+                                <span class="error-message" id="projectValue-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="automationLevel">Nível de Automação Desejado</label>
+                                <div class="automation-options">
+                                    <div class="automation-option">
+                                        <input type="radio" id="automationLow" name="automationLevel" value="low"
+                                            checked>
+                                        <label for="automationLow">
+                                            <i class="fas fa-robot"></i>
+                                            <span>Básico</span>
+                                            <small>Automações simples</small>
+                                        </label>
+                                    </div>
+                                    <div class="automation-option">
+                                        <input type="radio" id="automationMedium" name="automationLevel" value="medium">
+                                        <label for="automationMedium">
+                                            <i class="fas fa-robot"></i><i class="fas fa-robot small"></i>
+                                            <span>Intermediário</span>
+                                            <small>Automações avançadas</small>
+                                        </label>
+                                    </div>
+                                    <div class="automation-option">
+                                        <input type="radio" id="automationHigh" name="automationLevel" value="high">
+                                        <label for="automationHigh">
+                                            <i class="fas fa-robot"></i><i class="fas fa-robot"></i><i
+                                                class="fas fa-robot"></i>
+                                            <span>Completo</span>
+                                            <small>IA integrada total</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary simulator-submit">
+                                <i class="fas fa-calculator"></i> Calcular Economia
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="simulator-results">
+                        <div class="chart-container">
+                            <canvas id="economyChart"></canvas>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar"></i>
+                                <p>O gráfico será exibido após o cálculo</p>
+                            </div>
+                        </div>
+
+                        <div id="economyResult" class="economy-result">
+                            <div class="economy-metrics">
+                                <div class="metric">
+                                    <h4>Economia Estimada</h4>
+                                    <span class="metric-value" id="savingsValue">--</span>
+                                </div>
+                                <div class="metric">
+                                    <h4>ROI Estimado</h4>
+                                    <span class="metric-value" id="roiValue">--</span>
+                                </div>
+                                <div class="metric">
+                                    <h4>Tempo de Implementação</h4>
+                                    <span class="metric-value" id="timeValue">--</span>
+                                </div>
+                            </div>
+                            <div id="economyAnalysis" class="economy-analysis"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

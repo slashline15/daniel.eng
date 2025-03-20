@@ -1,0 +1,42 @@
+{
+  "api": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": true,
+    "cors_origins": ["*"]
+  },
+  "assistant": {
+    "use_api": false,
+    "use_local_model": false,
+    "confidence_threshold": 0.7,
+    "max_history": 10
+  },
+  "models": {
+    "default": {
+      "type": "dummy",
+      "name": "Modelo de Resposta Padrão",
+      "default": true,
+      "responses": {
+        "olá": ["Olá! Como posso te ajudar hoje?", "Oi! Em que posso ser útil?"],
+        "contato": ["Você pode entrar em contato pelo WhatsApp ou pelo email fornecido na página."],
+        "ajuda": ["Estou aqui para ajudar! O que você precisa?"],
+        "obrigado": ["De nada! Sempre às ordens."]
+      }
+    }
+  },
+  "external_api": {
+    "url": "https://api.example.com/v1/chat",
+    "timeout": 30,
+    "retry_attempts": 2,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "assistant.log",
+    "max_size": 10485760,
+    "backup_count": 3,
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  }
+}

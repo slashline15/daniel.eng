@@ -1,0 +1,22 @@
+/* Import all CSS modules */
+@import 'reset.css';
+@import 'variables.css';
+@import 'base.css';
+@import 'layout.css';
+@import 'components/header.css';
+@import 'components/navigation.css';
+@import 'components/hero.css';
+@import 'components/about.css';
+@import 'components/skills.css';
+@import 'components/projects.css';
+@import 'components/experience.css';
+@import 'components/stats-section.css';
+@import 'components/economy-simulator.css';
+@import 'components/contact.css';
+@import 'components/modals.css';
+@import 'components/clippy.css';
+@import 'components/footer.css';
+@import 'utilities.css';
+@import 'animations.css';
+@import 'dark-mode.css';
+@import 'responsive.css';

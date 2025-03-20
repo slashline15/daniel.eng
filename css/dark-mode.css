@@ -1,0 +1,173 @@
+body.dark-mode {
+    background-color: var(--dark-background);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode header,
+body.dark-mode .hero,
+body.dark-mode .skills,
+body.dark-mode .projects {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .about,
+body.dark-mode .contact,
+body.dark-mode .testimonials {
+    background-color: var(--dark-background-alt);
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .section-header h2,
+body.dark-mode .about-text h3,
+body.dark-mode .skills-text h3,
+body.dark-mode .contact-info h3,
+body.dark-mode .contact-form h3 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .about-text p,
+body.dark-mode .skills-text p,
+body.dark-mode .hero-description {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .testimonial-content,
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: var(--dark-background);
+    color: var(--dark-text-color);
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-md);
+}
+
+.theme-toggle i {
+    color: var(--text-color);
+}
+
+body.dark-mode .theme-toggle i {
+    color: var(--dark-text-color);
+}
+
+/* Switch de Tema */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 0 8px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+body.dark-mode .bar {
+    background-color: var(--dark-text-color);
+}
+
+body.dark-mode #clippy-chat {
+    background: var(--dark-background);
+    border-color: #444;
+}
+
+body.dark-mode #clippy-chat .user-bubble {
+    background: #444;
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .economy {
+    background-color: var(--dark-background-alt);
+}
+
+body.dark-mode .economy-simulator {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .simulator-controls,
+body.dark-mode .simulator-results {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .economy-intro h3,
+body.dark-mode .economy-simulator label {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .economy-intro p,
+body.dark-mode .automation-option label small {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .value-display input {
+    border-color: #444;
+    color: var(--primary-color);
+    background: var(--dark-background);
+}
+
+body.dark-mode .automation-option label {
+    border-color: #444;
+}
+
+body.dark-mode .automation-option input[type="radio"]:checked+label {
+    background-color: rgba(66, 133, 244, 0.2);
+}
+
+body.dark-mode .chart-placeholder {
+    background: rgba(30, 30, 30, 0.7);
+}
+
+body.dark-mode .economy-result {
+    background: rgba(30, 30, 30, 0.3);
+}
+
+body.dark-mode .metric {
+    background: var(--dark-background);
+}
+
+body.dark-mode .economy-analysis {
+    background: var(--dark-background);
+}
