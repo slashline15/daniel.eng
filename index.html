@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
+  <!-- Glassmorphism CSS -->
+  <link rel="stylesheet" href="glassmorphism.css">
+  <link rel="stylesheet" href="dynamic-background.css">
 </head>
 <body>
   <!-- Barra de progresso no scroll -->
@@ -53,8 +56,10 @@
   <!-- Seção Hero -->
   <section id="home" class="hero">
     <div class="particle-background"></div>
+    <!-- Novo Fundo Dinâmico -->
+    <div class="dynamic-background"></div>
     <div class="container">
-        <div class="hero-content glass-card"> <!-- Adicionado class glass-card -->
+        <div class="hero-content glass-card">
             <h1 class="hero-title">Daniel Alves</h1>
             <h2 class="hero-subtitle">
                 <span id="typing-text"></span>
@@ -62,7 +67,7 @@
             </h2>
             <p class="hero-description">Especialista em automações com IA</p>
             <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary btn-glass">Entre em contato</a> <!-- Adicionado btn-glass -->
+                <a href="#contact" class="btn btn-primary btn-glass">Entre em contato</a>
                 <a href="#about" class="btn btn-secondary">Saiba mais</a>
             </div>
         </div>
@@ -118,28 +123,28 @@
   <div class="stats-section">
     <div class="container">
       <div class="stats-container">
-        <div class="stat-counter tilt-card">
+        <div class="stat-counter tilt-card glass-card">
           <div class="tilt-card-inner">
             <i class="fas fa-project-diagram"></i>
             <div class="counter" data-target="150">0</div>
             <h4>Projetos Concluídos</h4>
           </div>
         </div>
-        <div class="stat-counter tilt-card">
+        <div class="stat-counter tilt-card glass-card">
           <div class="tilt-card-inner">
             <i class="fas fa-users"></i>
             <div class="counter" data-target="85">0</div>
             <h4>Clientes Satisfeitos</h4>
           </div>
         </div>
-        <div class="stat-counter tilt-card">
+        <div class="stat-counter tilt-card glass-card">
           <div class="tilt-card-inner">
             <i class="fas fa-award"></i>
             <div class="counter" data-target="12">0</div>
             <h4>Prêmios Recebidos</h4>
           </div>
         </div>
-        <div class="stat-counter tilt-card">
+        <div class="stat-counter tilt-card glass-card">
           <div class="tilt-card-inner">
             <i class="fas fa-robot"></i>
             <div class="counter" data-target="35">0</div>
@@ -153,6 +158,7 @@
   <!-- Seção Habilidades -->
   <section id="skills" class="skills parallax-section">
     <div class="parallax-bg"></div>
+    <div class="dynamic-background"></div>
     <div class="container">
       <div class="parallax-content">
         <div class="section-header">
@@ -160,7 +166,7 @@
           <div class="section-line"></div>
         </div>
         <div class="skills-content">
-          <div class="skills-text fade-in" data-animation="zoom-in">
+          <div class="skills-text fade-in glass-card" data-animation="zoom-in">
             <h3>Competências Profissionais</h3>
             <p>
               Como especialista em automações com IA no setor de construção civil, desenvolvo soluções
@@ -224,7 +230,7 @@
         <button class="filter-btn" data-filter="planning">Planejamento</button>
       </div>
       <div class="projects-grid">
-        <div class="project-item tilt-card" data-category="automation">
+        <div class="project-item tilt-card glass-card" data-category="automation">
           <div class="project-img">
             <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de Automação">
             <div class="project-overlay">
@@ -243,6 +249,7 @@
 
   <!-- Seção Depoimentos -->
   <section id="testimonials" class="testimonials">
+    <div class="dynamic-background"></div>
     <div class="container">
       <div class="section-header">
         <h2>Depoimentos</h2>
@@ -251,7 +258,7 @@
       <div class="testimonial-slider">
         <div class="testimonial-container">
           <div class="testimonial-item active">
-            <div class="testimonial-content">
+            <div class="testimonial-content glass-card">
               <div class="testimonial-text">
                 <i class="fas fa-quote-left"></i>
                 <p>
@@ -293,7 +300,7 @@
                 <div class="section-line"></div>
             </div>
             <div class="economy-content">
-                <div class="economy-simulator fade-in" data-animation="zoom-in">
+                <div class="economy-simulator fade-in glass-card" data-animation="zoom-in">
                     <div class="economy-intro">
                         <h3>Descubra quanto você pode economizar</h3>
                         <p>A automação com IA pode reduzir custos e aumentar a eficiência nos seus projetos de construção civil. Simule agora mesmo o potencial de economia!</p>
@@ -301,7 +308,7 @@
                     
                     <div class="economy-simulator-container">
                         <div class="simulator-controls">
-                            <form id="economyForm">
+                            <form id="economyForm" class="glass-card">
                                 <div class="form-group slider-group">
                                     <label for="projectValue">Valor do Projeto (R$)</label>
                                     <div class="slider-container">
@@ -347,13 +354,13 @@
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-primary simulator-submit">
+                                <button type="submit" class="btn btn-primary btn-glass simulator-submit">
                                     <i class="fas fa-calculator"></i> Calcular Economia
                                 </button>
                             </form>
                         </div>
                         
-                        <div class="simulator-results">
+                        <div class="simulator-results glass-card">
                             <div class="chart-container">
                                 <canvas id="economyChart"></canvas>
                                 <div class="chart-placeholder">
@@ -388,13 +395,14 @@
 
   <!-- Seção Contato -->
   <section id="contact" class="contact">
+    <div class="dynamic-background"></div>
     <div class="container">
       <div class="section-header">
         <h2>Entre em Contato</h2>
         <div class="section-line"></div>
       </div>
       <div class="contact-content">
-        <div class="contact-info fade-in">
+        <div class="contact-info fade-in glass-card">
           <h3>Informações de Contato</h3>
           <div class="contact-item">
             <i class="fas fa-phone"></i>
@@ -416,7 +424,7 @@
         </div>
         <div class="contact-form fade-in">
           <h3>Envie uma Mensagem</h3>
-          <form id="contactForm">
+          <form id="contactForm" class="glass-card">
             <div class="form-group">
               <input type="text" id="name" name="name" placeholder="Seu Nome" required>
               <span class="error-message" id="name-error"></span>
@@ -433,7 +441,7 @@
               <textarea id="message" name="message" placeholder="Sua Mensagem" required></textarea>
               <span class="error-message" id="message-error"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            <button type="submit" class="btn btn-primary btn-glass">Enviar Mensagem</button>
           </form>
         </div>
       </div>
@@ -442,11 +450,11 @@
 
   <!-- Modal Criativo -->
   <div id="creativeModal" class="creative-modal">
-    <div class="creative-modal-content">
+    <div class="creative-modal-content glass-card">
       <span class="close-modal">&times;</span>
       <h2>Hey, man! Vamos conversar?</h2>
       <p>Seu projeto merece o melhor. Entre em contato agora e vamos fazer acontecer!</p>
-      <a href="#contact" class="btn btn-primary">Fale Comigo</a>
+      <a href="#contact" class="btn btn-primary btn-glass">Fale Comigo</a>
     </div>
   </div>
 
@@ -479,14 +487,27 @@
   
   <!-- External JS -->
   <script src="script.js"></script>
-    <!-- Clippy Assistente -->
-    <div id="clippy-container">
-        <img src="clippy.gif" alt="Assistente Clippy" id="clippy">
-        <div id="clippy-chat">
-          <div class="chat-bubble">Olá, como posso ajudar?</div>
-          <input type="text" id="clippy-input" placeholder="Digite sua mensagem...">
-        </div>
+  <!-- Glassmorphism JS -->
+  <script src="glassmorphism.js"></script>
+  
+  <!-- Assistente de Chat Moderno (substitui o Clippy) -->
+  <div id="chat-assistant" class="glass-card">
+    <div class="chat-icon">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div id="chat-window">
+      <div class="chat-header">
+        <h4>Assistente Virtual</h4>
+        <span class="close-chat">&times;</span>
       </div>
-  <!-- Adicione o script do Clippy aqui -->
+      <div class="chat-messages">
+        <div class="chat-bubble">Olá! Como posso ajudar com seu projeto hoje?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Digite sua mensagem..." id="user-message">
+        <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
