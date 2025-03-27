@@ -1,4 +1,4 @@
-/* Fundo dinâmico com gradientes */
+/* Fundo dinâmico com gradientes - VERSÃO CORRIGIDA */
 .dynamic-background {
     position: absolute;
     top: 0;
@@ -91,13 +91,17 @@
     overflow: hidden;
   }
   
-  /* Substituir o particle-background pelo dynamic-background */
-  .hero .particle-background,
-  .testimonials .particle-background {
-    display: none;
+  /* Importante: garantir que os fundos dinâmicos estejam visíveis */
+  .dynamic-background {
+    display: block !important;
+    z-index: 1 !important;
   }
   
-  .hero .dynamic-background,
-  .testimonials .dynamic-background {
-    display: block;
+  /* Certificar que o z-index do conteúdo seja maior que o fundo */
+  .hero .container,
+  .testimonials .container,
+  .skills .container,
+  .contact .container {
+    position: relative;
+    z-index: 5;
   }
