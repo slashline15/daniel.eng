@@ -1,0 +1,46 @@
+/**
+ * CSS Principal - Importa todos os estilos de forma organizada e lógica
+ */
+
+/* ======================================
+   1. FUNDAÇÃO
+   ====================================== */
+
+/* Reset e Normalização */
+@import 'reset.css';
+
+/* Variáveis Globais e Configurações */
+@import 'variables.css';
+
+/* Layout Base e Grid */
+@import 'layout.css';
+
+/* ======================================
+   2. COMPONENTES (ordem alfabética)
+   ====================================== */
+
+/* Componentes da Interface */
+@import 'components/about.css';
+@import 'components/clippy.css';
+@import 'components/contact.css';
+@import 'components/economy-simulator.css';
+@import 'components/footer.css';
+@import 'components/header.css';
+@import 'components/hero.css';
+@import 'components/modals.css';
+@import 'components/navigation.css';
+@import 'components/projects.css';
+@import 'components/skills.css';
+@import 'components/stats-section.css';
+@import 'components/testimonials.css';
+
+/* ======================================
+   3. UTILIDADES E TEMAS
+   ====================================== */
+
+/* Sistemas Globais de Animação e Tema */
+@import 'animations.css';
+@import 'dark-mode.css';
+
+/* Responsividade (sempre por último) */
+@import 'responsive.css';

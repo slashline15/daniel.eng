@@ -3,6 +3,7 @@ const EconomySimulator = (function () {
 
     function init() {
         setupSimulator();
+        listenForThemeChanges();
     }
 
     function setupSimulator() {
@@ -22,6 +23,20 @@ const EconomySimulator = (function () {
             e.preventDefault();
             processSimulation(economyChart);
         });
+    }
+
+    // Escuta por mudanças de tema para atualizar o gráfico
+    function listenForThemeChanges() {
+        // Verifica se o módulo DarkMode existe
+        if (typeof DarkMode !== 'undefined') {
+            // Adiciona um event listener para o evento de mudança de tema
+            document.addEventListener(DarkMode.THEME_CHANGE_EVENT, function() {
+                // Se o gráfico existe, atualiza-o
+                if (economyChartInstance) {
+                    economyChartInstance.update();
+                }
+            });
+        }
     }
 
     function setupInputSync(slider, input) {
@@ -156,6 +171,16 @@ const EconomySimulator = (function () {
             iaData.push(projectValue * iaFactor[i] / 12);
         }
 
+        // Obter opções de cores baseadas no tema atual
+        let chartOptions;
+        if (typeof DarkMode !== 'undefined' && typeof DarkMode.getThemeColors === 'function') {
+            // Usar o helper do DarkMode para obter as cores corretas
+            chartOptions = DarkMode.getThemeColors();
+        } else {
+            // Fallback caso o DarkMode não esteja disponível
+            chartOptions = getDefaultChartOptions();
+        }
+
         // Create chart
         const ctx = chartElement.getContext('2d');
         economyChartInstance = new Chart(ctx, {
@@ -183,69 +208,99 @@ const EconomySimulator = (function () {
                     }
                 ]
             },
-            options: getChartOptions()
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Comparação de Custos: Tradicional vs. Automação com IA',
+                        color: chartOptions.plugins.title.color,
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += 'R$ ' + context.parsed.y.toLocaleString('pt-BR', {
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0
+                                    });
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: chartOptions.plugins.legend.labels.color,
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return 'R$ ' + value.toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                });
+                            },
+                            color: chartOptions.scales.y.ticks.color
+                        },
+                        grid: {
+                            color: chartOptions.scales.y.grid.color
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: chartOptions.scales.x.ticks.color
+                        },
+                        grid: {
+                            color: chartOptions.scales.x.grid.color
+                        }
+                    }
+                }
+            }
         });
 
-        // Update chart colors when theme changes
-        setupChartThemeSync();
+        // Armazenamos a instância no escopo global para o DarkMode poder acessá-la
+        window.economyChartInstance = economyChartInstance;
     }
 
-    function getChartOptions() {
+    // Opções padrão para o gráfico (fallback)
+    function getDefaultChartOptions() {
         const isDarkMode = document.body.classList.contains('dark-mode');
         const textColor = isDarkMode ? '#f5f5f5' : '#333333';
         const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
         const ticksColor = isDarkMode ? '#aaaaaa' : '#666666';
 
         return {
-            responsive: true,
-            maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Comparação de Custos: Tradicional vs. Automação com IA',
-                    color: textColor,
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
-                                label += 'R$ ' + context.parsed.y.toLocaleString('pt-BR', {
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                });
-                            }
-                            return label;
-                        }
-                    }
+                    color: textColor
                 },
                 legend: {
-                    position: 'bottom',
                     labels: {
-                        color: textColor,
-                        padding: 15,
-                        usePointStyle: true,
-                        pointStyle: 'circle'
+                        color: textColor
                     }
                 }
             },
             scales: {
                 y: {
-                    beginAtZero: true,
                     ticks: {
-                        callback: function (value) {
-                            return 'R$ ' + value.toLocaleString('pt-BR', {
-                                minimumFractionDigits: 0,
-                                maximumFractionDigits: 0
-                            });
-                        },
                         color: ticksColor
                     },
                     grid: {
@@ -262,24 +317,6 @@ const EconomySimulator = (function () {
                 }
             }
         };
-    }
-
-    function setupChartThemeSync() {
-        const themeSwitch = document.getElementById('theme-switch');
-        if (themeSwitch && economyChartInstance) {
-            themeSwitch.addEventListener('change', function () {
-                const options = getChartOptions();
-
-                economyChartInstance.options.plugins.title.color = options.plugins.title.color;
-                economyChartInstance.options.plugins.legend.labels.color = options.plugins.legend.labels.color;
-                economyChartInstance.options.scales.y.ticks.color = options.scales.y.ticks.color;
-                economyChartInstance.options.scales.x.ticks.color = options.scales.x.ticks.color;
-                economyChartInstance.options.scales.y.grid.color = options.scales.y.grid.color;
-                economyChartInstance.options.scales.x.grid.color = options.scales.x.grid.color;
-
-                economyChartInstance.update();
-            });
-        }
     }
 
     return {

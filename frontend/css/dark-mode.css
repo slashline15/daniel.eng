@@ -1,0 +1,237 @@
+/* ======================================
+   DARK MODE - Arquivo único e centralizado
+   ====================================== */
+
+/* Variáveis do tema (luz e escuro) */
+:root {
+    /* Esquema de Cores - Tema Claro (padrão) */
+    --primary-color: #4285f4;
+    --primary-color-rgb: 66, 133, 244;
+    --primary-dark: #3367d6;
+    --secondary-color: #34a853;
+    
+    /* Cores de texto - Tema Claro */
+    --text-color: #333333;
+    --text-light: #666666;
+    
+    /* Backgrounds - Tema Claro */
+    --background: #ffffff;
+    --background-alt: #f5f7fa;
+    
+    /* Cores de acento - Tema Claro */
+    --accent: #fbbc05;
+    --error: #ea4335;
+    
+    /* Cores para Modo Escuro */
+    --dark-background: #121212;
+    --dark-background-alt: #1e1e1e;
+    --dark-text-color: #f5f5f5;
+    --dark-text-light: #aaaaaa;
+}
+
+/* ======================================
+   APLICAÇÃO DO DARK MODE
+   ====================================== */
+
+/* Estilos base para dark mode */
+body.dark-mode {
+    background-color: var(--dark-background);
+    color: var(--dark-text-color);
+}
+
+/* Elementos de cabeçalho e navegação */
+body.dark-mode header,
+body.dark-mode .hero,
+body.dark-mode .skills,
+body.dark-mode .projects {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .about,
+body.dark-mode .contact,
+body.dark-mode .testimonials,
+body.dark-mode .economy {
+    background-color: var(--dark-background-alt);
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .section-header h2,
+body.dark-mode .about-text h3,
+body.dark-mode .skills-text h3,
+body.dark-mode .contact-info h3,
+body.dark-mode .contact-form h3,
+body.dark-mode .economy-intro h3 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .about-text p,
+body.dark-mode .skills-text p,
+body.dark-mode .hero-description,
+body.dark-mode .economy-intro p,
+body.dark-mode .automation-option label small {
+    color: var(--dark-text-light);
+}
+
+/* Componentes interativos */
+body.dark-mode .bar {
+    background-color: var(--dark-text-color);
+}
+
+/* Formulários e inputs */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .value-display input {
+    background-color: var(--dark-background);
+    color: var(--dark-text-color);
+    border-color: #444;
+}
+
+/* Cartões e containers */
+body.dark-mode .testimonial-content,
+body.dark-mode .economy-simulator,
+body.dark-mode .simulator-controls,
+body.dark-mode .simulator-results,
+body.dark-mode .economy-result,
+body.dark-mode .metric,
+body.dark-mode .economy-analysis {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .automation-option label {
+    border-color: #444;
+}
+
+body.dark-mode .automation-option input[type="radio"]:checked+label {
+    background-color: rgba(66, 133, 244, 0.2);
+}
+
+/* Chatbot e assistente */
+body.dark-mode #clippy-chat {
+    background: var(--dark-background);
+    border-color: #444;
+}
+
+body.dark-mode #clippy-chat .user-bubble {
+    background: #444;
+    color: var(--dark-text-color);
+}
+
+body.dark-mode #clippy-chat input {
+    background: var(--dark-background);
+    color: var(--dark-text-color);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .close-chat {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .close-chat:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Placeholders e elementos decorativos */
+body.dark-mode .chart-placeholder {
+    background: rgba(30, 30, 30, 0.7);
+}
+
+/* Modais e elementos flutuantes */
+body.dark-mode .project-modal-content {
+    background: var(--dark-background-alt);
+}
+
+body.dark-mode .project-modal-details h3,
+body.dark-mode .project-technologies h4,
+body.dark-mode .project-results h4,
+body.dark-mode .spec-value {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .project-modal-details p,
+body.dark-mode .spec-label,
+body.dark-mode .project-results li {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .project-specs {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .tech-tag {
+    background: rgba(var(--primary-color-rgb), 0.2);
+}
+
+body.dark-mode .close-project-modal {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--dark-text-color);
+}
+
+/* ======================================
+   SELETOR DE TEMA (SWITCH)
+   ====================================== */
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-md);
+}
+
+.theme-toggle i {
+    color: var(--text-color);
+}
+
+body.dark-mode .theme-toggle i {
+    color: var(--dark-text-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 0 8px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

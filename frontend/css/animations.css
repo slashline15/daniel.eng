@@ -1,0 +1,270 @@
+/* ======================================
+   ANIMAÇÕES CENTRALIZADAS
+   Um único lugar para todas as animações do site
+   ====================================== */
+
+/* === KEYFRAMES BÁSICOS === */
+
+/* Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Zoom In */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slide da Esquerda */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide da Direita */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide de Cima */
+@keyframes slideInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide de Baixo */
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rotação */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulsar */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Shake */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Flutuação */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-15px) translateX(10px);
+    }
+    50% {
+        transform: translateY(-7px) translateX(-10px);
+    }
+    75% {
+        transform: translateY(15px) translateX(10px);
+    }
+}
+
+/* Cursor piscando */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* === CLASSES DE UTILIDADE DE ANIMAÇÃO === */
+
+/* Fade In Geral - Base de todas as animações de entrada */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Slide da Esquerda */
+.slide-in-left {
+    animation: slideInLeft 1s forwards;
+    opacity: 0;
+}
+
+/* Slide da Direita */
+.slide-in-right {
+    animation: slideInRight 1s forwards;
+    opacity: 0;
+}
+
+/* Zoom In */
+.zoom-in {
+    animation: zoomIn 1s forwards;
+    opacity: 0;
+}
+
+/* Animação de tipo/digitação */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: currentColor;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+}
+
+/* Efeito de parallax */
+.parallax-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-size: cover;
+    background-position: center;
+    transform: translateY(0);
+    z-index: -1;
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 1;
+    padding: 100px 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: var(--border-radius);
+}
+
+/* Animação de partículas */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(66, 133, 244, 0.2);
+    animation: float 15s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* Efeito de tilt em cartões */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    perspective: 1000px;
+}
+
+.tilt-card:hover {
+    transform: rotateX(5deg) rotateY(5deg);
+}
+
+.tilt-card-inner {
+    transform: translateZ(20px);
+    transition: transform 0.5s ease;
+}
+
+/* === UTILITÁRIOS DE ANIMAÇÃO === */
+
+/* Controle de duração */
+.duration-300 { transition-duration: 300ms; }
+.duration-500 { transition-duration: 500ms; }
+.duration-700 { transition-duration: 700ms; }
+.duration-1000 { transition-duration: 1000ms; }
+
+/* Controle de atraso */
+.delay-100 { transition-delay: 100ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-500 { transition-delay: 500ms; }
+.delay-700 { transition-delay: 700ms; }
+
+/* Curvas de animação */
+.ease-linear { transition-timing-function: linear; }
+.ease-in { transition-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+.ease-out { transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+.ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }

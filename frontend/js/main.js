@@ -1,6 +1,5 @@
 /**
- * Script principal - page-modulos
- * Arquivo principal que inicializa todos os módulos da aplicação
+ * Script principal - Inicializa todos os módulos da aplicação
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -22,34 +21,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /**
  * Inicializa todos os módulos da aplicação
+ * Ordem de inicialização importa aqui!
  */
 function initializeAllModules() {
-    // Verifica se cada módulo existe antes de inicializá-lo
+    // 1. Primeiro inicializa o Dark Mode para que a aparência correta seja aplicada desde o início
+    if (typeof DarkMode !== 'undefined') DarkMode.init();
+
+    // 2. Inicializa o sistema de animações centralizado (substitui vários módulos antigos)
+    if (typeof Animations !== 'undefined') Animations.init();
+
+    // 3. Inicializa outros módulos
     if (typeof Navigation !== 'undefined') Navigation.init();
     if (typeof SmoothScroll !== 'undefined') SmoothScroll.init();
-    if (typeof TypeEffect !== 'undefined') TypeEffect.init();
-    if (typeof AnimationEffects !== 'undefined') AnimationEffects.init();
-    if (typeof SkillBars !== 'undefined') SkillBars.init();
-    if (typeof Particles !== 'undefined') Particles.init();
-    if (typeof ScrollEffects !== 'undefined') ScrollEffects.init();
-    if (typeof Counters !== 'undefined') Counters.init();
     if (typeof ProjectFilter !== 'undefined') ProjectFilter.init();
     if (typeof TestimonialSlider !== 'undefined') TestimonialSlider.init();
-    if (typeof DarkMode !== 'undefined') DarkMode.init();
-    if (typeof TiltEffect !== 'undefined') TiltEffect.init();
     if (typeof CreativeModal !== 'undefined') CreativeModal.init();
     if (typeof ClippyAssistant !== 'undefined') ClippyAssistant.init();
     if (typeof EconomySimulator !== 'undefined') EconomySimulator.init();
+    if (typeof Particles !== 'undefined') Particles.init();
 
     console.log('Todos os módulos inicializados com sucesso!');
     window.modulesInitialized = true;
+    
+    // Força um check de animações após tudo estar carregado
+    setTimeout(function() {
+        if (typeof Animations !== 'undefined') {
+            Animations.checkAndAnimateElements();
+        }
+    }, 500);
 }
-// Adicione ao final de main.js
+
+// Quando a página estiver completamente carregada
 window.addEventListener('load', function () {
+    // Força a inicialização das partículas para garantir
     if (typeof Particles !== 'undefined') {
         setTimeout(function () {
             console.log("Forçando inicialização das partículas");
             Particles.init();
         }, 500);
+    }
+    
+    // Força um check final de animações
+    if (typeof Animations !== 'undefined') {
+        Animations.checkAndAnimateElements();
     }
 });

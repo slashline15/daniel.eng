@@ -85,9 +85,9 @@ class EnhancedAssistant:
         responses = self.responses.get(intent, self.responses['default'])
         return random.choice(responses)
     
-    def process_message(self, message: str) -> str:
+    def process_message(self, message: str) -> Dict[str, Any]:
         """
-        Processa a mensagem do usuário e retorna uma resposta.
+        Processa a mensagem do usuário e retorna uma resposta com metadados.
         Se habilitado, tenta usar a API externa quando a confiança da detecção for baixa.
         """
         # Armazena a mensagem no histórico
@@ -96,27 +96,38 @@ class EnhancedAssistant:
         # Detecta a intenção e confiança
         intent, confidence = self.detect_intent(message)
         
+        response_data = {
+            'text': '',
+            'confidence': confidence,
+            'intent': intent,
+            'source': 'patterns'
+        }
+        
         # Decide entre usar padrões locais ou API
         if self.use_api and confidence < self.confidence_threshold:
             try:
                 # Tenta obter resposta da API
                 api_result = self.api_assistant.generate_response(message)
                 if api_result['success']:
-                    response = api_result['response']
+                    response_data['text'] = api_result['response']
+                    response_data['source'] = 'api'
                 else:
                     # Fallback para padrões locais em caso de erro
-                    response = self.get_response_from_patterns(intent)
+                    response_data['text'] = self.get_response_from_patterns(intent)
             except Exception as e:
+                # Log do erro
+                logging.error(f"Erro ao chamar API: {str(e)}")
                 # Garantia de fallback em caso de erro
-                response = self.get_response_from_patterns(intent)
+                response_data['text'] = self.get_response_from_patterns(intent)
         else:
             # Usa os padrões locais
-            response = self.get_response_from_patterns(intent)
+            response_data['text'] = self.get_response_from_patterns(intent)
         
         # Armazena a resposta no histórico
-        self.conversation_history.append({'role': 'assistant', 'message': response})
+        self.conversation_history.append({'role': 'assistant', 'message': response_data['text']})
         
-        return response
+        return response_data
+
     
     def get_conversation_history(self) -> List[Dict[str, str]]:
         """Retorna o histórico da conversa."""

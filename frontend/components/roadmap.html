@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico de Linha do Tempo em Perspectiva - Exemplo Completo</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --marker-size: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .controls {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .timeline-container {
+            position: relative;
+            margin: 100px auto;
+            max-width: 1200px;
+            padding: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .timeline-path-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 40px 0;
+        }
+
+        .timeline-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .timeline-curve {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .timeline-markers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+        }
+
+        .timeline-point {
+            width: var(--marker-size);
+            height: var(--marker-size);
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 2;
+            margin: 10px 0;
+        }
+
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .timeline-content.above {
+            margin-top: -170px;
+        }
+
+        .timeline-content.below {
+            margin-top: 20px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .timeline-description {
+            text-align: center;
+            font-size: 14px;
+            width: 100%;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .timeline-year {
+            font-size: 28px;
+            font-weight: bold;
+            color: #555;
+            position: absolute;
+        }
+
+        .start-year {
+            left: 0;
+            top: 0;
+        }
+
+        .end-year {
+            right: 0;
+            bottom: 0;
+        }
+
+        /* Design responsivo */
+        @media (max-width: 992px) {
+            .timeline-container {
+                padding: 15px;
+            }
+            
+            .timeline-path-container {
+                height: 400px;
+            }
+            
+            .timeline-marker {
+                width: 180px;
+            }
+            
+            .timeline-content.above {
+                margin-top: -140px;
+            }
+            
+            :root {
+                --marker-size: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                margin: 60px auto;
+            }
+            
+            .timeline-path-container {
+                height: 350px;
+            }
+            
+            .timeline-marker {
+                width: 150px;
+            }
+            
+            .timeline-title {
+                font-size: 16px;
+            }
+            
+            .timeline-description {
+                font-size: 13px;
+            }
+            
+            .timeline-date {
+                font-size: 14px;
+            }
+            
+            .timeline-content.above {
+                margin-top: -120px;
+            }
+            
+            :root {
+                --marker-size: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .timeline-container {
+                margin: 40px auto;
+            }
+            
+            .timeline-path-container {
+                height: 300px;
+            }
+            
+            .timeline-marker {
+                width: 120px;
+            }
+            
+            .timeline-date {
+                font-size: 12px;
+            }
+            
+            .timeline-title {
+                font-size: 14px;
+            }
+            
+            .timeline-description {
+                font-size: 11px;
+            }
+            
+            .timeline-content.above {
+                margin-top: -100px;
+            }
+            
+            :root {
+                --marker-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <h1>Infográfico de Linha do Tempo em Perspectiva</h1>
+        
+        <div class="controls">
+            <button id="btn-curto">Exemplo Curto (5 dias)</button>
+            <button id="btn-medio">Exemplo Médio (3 meses)</button>
+            <button id="btn-longo">Exemplo Longo (6 meses)</button>
+            <button id="btn-anos">Exemplo Multi-Ano</button>
+        </div>
+        
+        <div class="timeline-container">
+            <!-- O conteúdo será gerado dinamicamente pelo JavaScript -->
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados de exemplo
+            const exemplosCurto = [
+                {
+                    "date": "2025-03-14",
+                    "title": "Início",
+                    "description": "Primeiro dia. Inferno total. A morte seria uma boa."
+                },
+                {
+                    "date": "2025-03-17",
+                    "title": "Chegou notebook",
+                    "description": "O dia foi pesado. Após um fim de semana de sacrifício, faltava motivação para brincar hobie preferido. Caí."
+                },
+                {
+                    "date": "2025-03-18",
+                    "title": "Fisioterapia",
+                    "description": "Ainda com esperanças de ter sido só uma. Durou até quinta."
+                },
+                {
+                    "date": "2025-03-20",
+                    "title": "Comprei a segunda",
+                    "description": "Já tinha passado o dia sem, mas eu precisava para trabalhar."
+                },
+                {
+                    "date": "2025-03-21",
+                    "title": "Flagra",
+                    "description": "Acabei de ser pego. Raiva e desconfiança deles, e vergonha de mim."
+                }
+            ];
+            
+            const exemplosMedio = [
+                {
+                    "date": "2025-03-14",
+                    "title": "Início",
+                    "description": "Primeiro dia. Inferno total. A morte seria uma boa."
+                },
+                {
+                    "date": "2025-03-21",
+                    "title": "Flagra",
+                    "description": "Acabei de ser pego. Raiva e desconfiança deles, e vergonha de mim."
+                },
+                {
+                    "date": "2025-04-15",
+                    "title": "Reunião de Projeto",
+                    "description": "Apresentação inicial dos conceitos para o cliente."
+                },
+                {
+                    "date": "2025-05-20",
+                    "title": "Aprovação do Plano",
+                    "description": "Cliente aprovou o orçamento e cronograma iniciais."
+                }
+            ];
+            
+            const exemplosLongo = [
+                {
+                    "date": "2025-03-14",
+                    "title": "Início",
+                    "description": "Primeiro dia. Inferno total. A morte seria uma boa."
+                },
+                {
+                    "date": "2025-04-15",
+                    "title": "Reunião de Projeto",
+                    "description": "Apresentação inicial dos conceitos para o cliente."
+                },
+                {
+                    "date": "2025-05-20",
+                    "title": "Aprovação do Plano",
+                    "description": "Cliente aprovou o orçamento e cronograma iniciais."
+                },
+                {
+                    "date": "2025-06-10",
+                    "title": "Início da Execução",
+                    "description": "Primeiro dia no canteiro de obras."
+                },
+                {
+                    "date": "2025-08-10",
+                    "title": "Entrega Parcial",
+                    "description": "Entrega da primeira fase do projeto concluída com sucesso."
+                },
+                {
+                    "date": "2025-09-05",
+                    "title": "Conclusão",
+                    "description": "Projeto finalizado e entregue ao cliente."
+                }
+            ];
+            
+            const exemplosMultiAno = [
+                {
+                    "date": "2024-10-20",
+                    "title": "Concepção",
+                    "description": "Idealização inicial do projeto."
+                },
+                {
+                    "date": "2025-01-15",
+                    "title": "Aprovação",
+                    "description": "Aprovação do projeto pela diretoria."
+                },
+                {
+                    "date": "2025-04-10",
+                    "title": "Fase 1",
+                    "description": "Conclusão da primeira fase."
+                },
+                {
+                    "date": "2025-09-20",
+                    "title": "Fase 2",
+                    "description": "Conclusão da segunda fase."
+                },
+                {
+                    "date": "2026-02-15",
+                    "title": "Fase 3",
+                    "description": "Conclusão da terceira fase."
+                },
+                {
+                    "date": "2026-07-20",
+                    "title": "Fase Final",
+                    "description": "Projeto concluído com sucesso."
+                }
+            ];
+            
+            // Carregar exemplo curto por padrão
+            renderTimeline(exemplosCurto);
+            
+            // Adicionar listeners para os botões
+            document.getElementById('btn-curto').addEventListener('click', function() {
+                renderTimeline(exemplosCurto);
+            });
+            
+            document.getElementById('btn-medio').addEventListener('click', function() {
+                renderTimeline(exemplosMedio);
+            });
+            
+            document.getElementById('btn-longo').addEventListener('click', function() {
+                renderTimeline(exemplosLongo);
+            });
+            
+            document.getElementById('btn-anos').addEventListener('click', function() {
+                renderTimeline(exemplosMultiAno);
+            });
+        });
+
+        function renderTimeline(data) {
+            if (!data || data.length === 0) return;
+
+            // Reorganize a estrutura HTML
+            const container = document.querySelector('.timeline-container');
+            container.innerHTML = `
+                <div class="timeline-year start-year"></div>
+                <div class="timeline-path-container">
+                    <svg class="timeline-svg" viewBox="0 0 1000 400" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="timeline-gradient" gradientUnits="userSpaceOnUse">
+                                <!-- Gradient stops will be added dynamically -->
+                            </linearGradient>
+                        </defs>
+                        <path class="timeline-curve" d="" stroke="url(#timeline-gradient)"></path>
+                    </svg>
+                    <div class="timeline-markers"></div>
+                </div>
+                <div class="timeline-year end-year"></div>
+            `;
+
+            // Ordene os dados por data
+            data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            const markersContainer = document.querySelector('.timeline-markers');
+            const startYearElement = document.querySelector('.start-year');
+            const endYearElement = document.querySelector('.end-year');
+            const svgElement = document.querySelector('.timeline-svg');
+            const curvePath = document.querySelector('.timeline-curve');
+            const gradient = document.getElementById('timeline-gradient');
+
+            // Definir anos
+            const startDate = new Date(data[0].date);
+            const endDate = new Date(data[data.length - 1].date);
+            const startYear = startDate.getFullYear();
+            const endYear = endDate.getFullYear();
+
+            startYearElement.textContent = startYear;
+            
+            if (startYear !== endYear) {
+                endYearElement.textContent = endYear;
+                endYearElement.style.display = 'block';
+            } else {
+                endYearElement.style.display = 'none';
+            }
+
+            // Calcular a duração total em milissegundos
+            const totalDuration = endDate.getTime() - startDate.getTime();
+            
+            // Criar o caminho SVG curvado (similar à imagem de exemplo)
+            const svgWidth = 1000;
+            const svgHeight = 400;
+            const pathStartX = 0;
+            const pathEndX = svgWidth;
+            const controlPoint1X = svgWidth * 0.4;
+            const controlPoint1Y = svgHeight * 0.7;
+            const controlPoint2X = svgWidth * 0.6;
+            const controlPoint2Y = svgHeight * 0.3;
+            
+            // Definir o caminho da curva
+            const curvePathD = `M ${pathStartX},${svgHeight/2} C ${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${pathEndX},${svgHeight/2}`;
+            curvePath.setAttribute('d', curvePathD);
+            
+            // Configurar os pontos de início e fim para o gradiente
+            gradient.setAttribute('x1', '0');
+            gradient.setAttribute('y1', '0');
+            gradient.setAttribute('x2', svgWidth);
+            gradient.setAttribute('y2', '0');
+
+            // Mapear os meses únicos para colorir a trilha
+            let monthsMap = new Map();
+            data.forEach(item => {
+                const date = new Date(item.date);
+                const key = `${date.getFullYear()}-${date.getMonth()}`;
+                
+                if (!monthsMap.has(key)) {
+                    monthsMap.set(key, {
+                        year: date.getFullYear(),
+                        month: date.getMonth(),
+                        start: new Date(date.getFullYear(), date.getMonth(), 1),
+                        end: new Date(date.getFullYear(), date.getMonth() + 1, 0)
+                    });
+                }
+            });
+            
+            // Converter para array e ordenar
+            let months = Array.from(monthsMap.values()).sort((a, b) => a.start - b.start);
+
+            // Cores para os meses
+            const monthColors = [
+                '#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6',
+                '#1abc9c', '#34495e', '#7f8c8d', '#d35400', '#c0392b', '#16a085'
+            ];
+
+            // Adicionar paradas de gradiente para cada mês
+            months.forEach((monthData, index) => {
+                const effectiveStart = new Date(Math.max(monthData.start, startDate));
+                const effectiveEnd = new Date(Math.min(monthData.end, endDate));
+                
+                const startPos = ((effectiveStart - startDate) / totalDuration);
+                const endPos = ((effectiveEnd - startDate) / totalDuration);
+                
+                const colorIndex = ((monthData.year % 12) + monthData.month) % monthColors.length;
+                const monthColor = monthColors[colorIndex];
+                
+                // Adicionar paradas de gradiente
+                const startStop = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                startStop.setAttribute('offset', `${startPos * 100}%`);
+                startStop.setAttribute('stop-color', monthColor);
+                
+                const endStop = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                endStop.setAttribute('offset', `${endPos * 100}%`);
+                endStop.setAttribute('stop-color', monthColor);
+                
+                gradient.appendChild(startStop);
+                gradient.appendChild(endStop);
+                
+                // Adicionar separadores entre meses (exceto para o primeiro mês)
+                if (index > 0) {
+                    const point = getPointOnCurve(startPos, curvePathD);
+                    const x = point.x;
+                    const y = point.y;
+                    
+                    const divider = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    divider.setAttribute('cx', x);
+                    divider.setAttribute('cy', y);
+                    divider.setAttribute('r', '5');
+                    divider.setAttribute('fill', '#fff');
+                    divider.setAttribute('stroke', '#333');
+                    divider.setAttribute('stroke-width', '2');
+                    svgElement.appendChild(divider);
+                }
+            });
+
+            // Criar marcadores
+            data.forEach((item, index) => {
+                const itemDate = new Date(item.date);
+                const timeDiff = itemDate.getTime() - startDate.getTime();
+                
+                // Calcular a posição horizontal com base na distância proporcional
+                const position = (timeDiff / totalDuration);
+                
+                // Usar a função getPointOnCurve para obter as coordenadas no caminho curvo
+                const point = getPointOnCurve(position, curvePathD);
+                const x = point.x / svgWidth * 100; // Converter para porcentagem
+                const y = point.y / svgHeight * 100; // Converter para porcentagem
+                
+                // Determinar a cor com base no mês
+                const colorIndex = ((itemDate.getFullYear() % 12) + itemDate.getMonth()) % monthColors.length;
+                const monthColor = monthColors[colorIndex];
+                
+                // Criar o elemento marcador
+                const marker = document.createElement('div');
+                marker.className = 'timeline-marker';
+                marker.style.left = `${x}%`;
+                marker.style.top = `${y}%`;
+                
+                // Alternar posição acima/abaixo com base na posição na curva
+                const isAbove = y > 50;
+                
+                // Criar ponto com data
+                const pointElement = document.createElement('div');
+                pointElement.className = 'timeline-point';
+                pointElement.style.borderColor = monthColor;
+                
+                const date = document.createElement('div');
+                date.className = 'timeline-date';
+                date.innerHTML = `${itemDate.getDate()}<br>${getMonthName(itemDate.getMonth())}`;
+                pointElement.appendChild(date);
+                
+                // Criar título
+                const title = document.createElement('div');
+                title.className = 'timeline-title';
+                title.textContent = item.title;
+                
+                // Criar descrição
+                const description = document.createElement('div');
+                description.className = 'timeline-description';
+                description.textContent = item.description;
+                
+                // Determinar a direção do conteúdo
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'timeline-content';
+                
+                if (isAbove) {
+                    contentWrapper.classList.add('above');
+                    contentWrapper.appendChild(description);
+                    contentWrapper.appendChild(title);
+                    marker.appendChild(contentWrapper);
+                    marker.appendChild(pointElement);
+                } else {
+                    contentWrapper.classList.add('below');
+                    contentWrapper.appendChild(title);
+                    contentWrapper.appendChild(description);
+                    marker.appendChild(pointElement);
+                    marker.appendChild(contentWrapper);
+                }
+                
+                markersContainer.appendChild(marker);
+            });
+        }
+
+        // Função para obter um ponto em uma curva de Bezier com base em um percentual (0-1)
+        function getPointOnCurve(percent, pathD) {
+            // Extrair pontos de controle da string do path
+            const parts = pathD.match(/M\s+([\d.]+),([\d.]+)\s+C\s+([\d.]+),([\d.]+)\s+([\d.]+),([\d.]+)\s+([\d.]+),([\d.]+)/);
+            if (!parts) return { x: 0, y: 0 };
+            
+            const x1 = parseFloat(parts[1]);
+            const y1 = parseFloat(parts[2]);
+            const x2 = parseFloat(parts[3]);
+            const y2 = parseFloat(parts[4]);
+            const x3 = parseFloat(parts[5]);
+            const y3 = parseFloat(parts[6]);
+            const x4 = parseFloat(parts[7]);
+            const y4 = parseFloat(parts[8]);
+            
+            // Fórmula para Bezier cúbica
+            const t = percent;
+            const t2 = t * t;
+            const t3 = t2 * t;
+            const mt = 1 - t;
+            const mt2 = mt * mt;
+            const mt3 = mt2 * mt;
+            
+            const x = mt3 * x1 + 3 * mt2 * t * x2 + 3 * mt * t2 * x3 + t3 * x4;
+            const y = mt3 * y1 + 3 * mt2 * t * y2 + 3 * mt * t2 * y3 + t3 * y4;
+            
+            return { x, y };
+        }
+
+        function getMonthName(month) {
+            const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+            return months[month];
+        }
+    </script>
+</body>
+</html>
