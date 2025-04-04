@@ -1,0 +1,68 @@
+<div class="stats-section">
+    <div class="container">
+        <div class="stats-container"
+            style="background-color: var(--primary-color); color: white; padding: var(--spacing-lg) 0; border-radius: var(--border-radius);">
+            <div class="stat-counter tilt-card">
+                <div class="tilt-card-inner">
+                    <i class="fas fa-project-diagram" style="font-size: 4rem; margin-bottom: var(--spacing-sm);"></i>
+                    <div class="counter" data-target="150">0</div>
+                    <h3>Projetos Concluídos</h3>
+                </div>
+            </div>
+            <div class="stat-counter tilt-card">
+                <div class="tilt-card-inner">
+                    <i class="fas fa-users" style="font-size: 4rem; margin-bottom: var(--spacing-sm);"></i>
+                    <div class="counter" data-target="85">0</div>
+                    <h3>Clientes Satisfeitos</h3>
+                </div>
+            </div>
+            <div class="stat-counter tilt-card">
+                <div class="tilt-card-inner">
+                    <i class="fas fa-award" style="font-size: 4rem; margin-bottom: var(--spacing-sm);"></i>
+                    <div class="counter" data-target="12">0</div>
+                    <h3>Prêmios Recebidos</h3>
+                </div>
+            </div>
+            <div class="stat-counter tilt-card">
+                <div class="tilt-card-inner">
+                    <i class="fas fa-robot" style="font-size: 4rem; margin-bottom: var(--spacing-sm);"></i>
+                    <div class="counter" data-target="35">0</div>
+                    <h3>Automações Implementadas</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /* Seção Estatísticas */
+    .stats-section {
+        background-color: var(--primary-color);
+        padding: var(--spacing-lg) 0;
+        color: white;
+    }
+
+    .stats-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+
+    .stat-counter {
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .stat-counter i {
+        font-size: 9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .counter {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: var(--spacing-xs);
+    }
+</style>
