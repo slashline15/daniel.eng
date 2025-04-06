@@ -32,12 +32,23 @@ const ProjectGallery = (function() {
      * @param {Array} projectsData Dados dos projetos (opcional, pode ser carregado via data-attributes)
      */
     function init(projectsData = null) {
-        // Se dados foram fornecidos, usar eles
+        console.log("🔥 PROJECT GALLERY INIT CHAMADO!");
+        console.log("Grid existe?", !!document.querySelector('.project-gallery-grid'));
+        
+        // Se projetoData não for nulo e for array, usar eles
         if (projectsData && Array.isArray(projectsData)) {
             state.projects = projectsData;
+            console.log("Usando dados fornecidos:", projectsData.length, "projetos");
         } else {
-            // Caso contrário, tentar extrair dados dos elementos
+            // Tentar extrair do DOM
+            console.log("Tentando coletar dados do DOM...");
             collectProjectData();
+            console.log("Projetos coletados:", state.projects.length);
+        }
+        
+        if (state.projects.length === 0) {
+            console.error("⚠️ CARALHO! NENHUM PROJETO ENCONTRADO!");
+            return;
         }
         
         // Extrair categorias para filtros

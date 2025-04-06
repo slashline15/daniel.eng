@@ -3,6 +3,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("DOM carregado: main.js iniciado");
+    
     // Verificamos se o componentLoader está ativo
     if (typeof ComponentLoader !== 'undefined') {
         // Se o componentLoader estiver sendo usado, ele vai cuidar da inicialização
@@ -24,21 +26,41 @@ document.addEventListener('DOMContentLoaded', function () {
  * Ordem de inicialização importa aqui!
  */
 function initializeAllModules() {
+    console.log("Inicializando todos os módulos...");
+    
     // 1. Primeiro inicializa o Dark Mode para que a aparência correta seja aplicada desde o início
-    if (typeof DarkMode !== 'undefined') DarkMode.init();
+    if (typeof DarkMode !== 'undefined') {
+        console.log("Inicializando DarkMode...");
+        DarkMode.init();
+    } else {
+        console.warn("Módulo DarkMode não encontrado!");
+    }
 
     // 2. Inicializa o sistema de animações centralizado (substitui vários módulos antigos)
-    if (typeof Animations !== 'undefined') Animations.init();
+    if (typeof Animations !== 'undefined') {
+        console.log("Inicializando Animations...");
+        Animations.init();
+    } else {
+        console.warn("Módulo Animations não encontrado!");
+    }
 
-    // 3. Inicializa outros módulos
-    if (typeof Navigation !== 'undefined') Navigation.init();
-    if (typeof SmoothScroll !== 'undefined') SmoothScroll.init();
-    if (typeof ProjectGallery !== 'undefined') ProjectGallery.init();
-    if (typeof TestimonialSlider !== 'undefined') TestimonialSlider.init();
-    if (typeof CreativeModal !== 'undefined') CreativeModal.init();
-    if (typeof ClippyAssistant !== 'undefined') ClippyAssistant.init();
-    if (typeof EconomySimulator !== 'undefined') EconomySimulator.init();
-    if (typeof Particles !== 'undefined') Particles.init();
+    // 3. Inicializa o módulo de galeria
+    if (typeof ProjectGallery !== 'undefined') {
+        console.log("Inicializando ProjectGallery...");
+        ProjectGallery.init();
+    } else {
+        console.warn("Módulo ProjectGallery não encontrado!");
+    }
+
+    // 4. Inicializa outros módulos
+    initializeModule('Navigation');
+    initializeModule('SmoothScroll');
+    initializeModule('ProjectFilter');
+    initializeModule('TestimonialSlider');
+    initializeModule('CreativeModal');
+    initializeModule('ClippyAssistant');
+    initializeModule('EconomySimulator');
+    initializeModule('Particles');
 
     console.log('Todos os módulos inicializados com sucesso!');
     window.modulesInitialized = true;
@@ -51,8 +73,26 @@ function initializeAllModules() {
     }, 500);
 }
 
+/**
+ * Função helper para inicializar um módulo com tratamento de erro
+ */
+function initializeModule(moduleName) {
+    if (typeof window[moduleName] !== 'undefined') {
+        console.log(`Inicializando ${moduleName}...`);
+        try {
+            window[moduleName].init();
+        } catch(e) {
+            console.error(`Erro ao inicializar ${moduleName}:`, e);
+        }
+    } else {
+        console.warn(`Módulo ${moduleName} não encontrado!`);
+    }
+}
+
 // Quando a página estiver completamente carregada
 window.addEventListener('load', function () {
+    console.log("Página totalmente carregada!");
+    
     // Força a inicialização das partículas para garantir
     if (typeof Particles !== 'undefined') {
         setTimeout(function () {

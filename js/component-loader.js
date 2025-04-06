@@ -11,7 +11,7 @@ const ComponentLoader = (function() {
         'about-container': 'about-section.html',
         'stats-container': 'stats-section.html',
         'skills-container': 'skills-section.html',
-        'projects-container': 'projects-section.html',
+        'projects-container': 'project-section.html',
         'testimonials-container': 'testimonials-section.html',
         'economy-container': 'economy-simulator-section.html',
         'contact-container': 'contact-section.html',
@@ -33,6 +33,7 @@ const ComponentLoader = (function() {
      * Inicializa o carregamento de componentes
      */
     function init() {
+        console.log("ComponentLoader: Iniciando carregamento...");
         state.startTime = performance.now();
         state.loaded = 0;
         state.loadComplete = false;
@@ -110,6 +111,7 @@ const ComponentLoader = (function() {
                 throw new Error(`Container #${containerId} não encontrado`);
             }
 
+            console.log(`Carregando componente: ${filename} para #${containerId}`);
             const response = await fetch(`components/${filename}`);
             if (!response.ok) {
                 throw new Error(`Erro HTTP: ${response.status}`);
@@ -135,8 +137,6 @@ const ComponentLoader = (function() {
         if (progress % 25 === 0) {
             console.log(`📦 Componentes: ${progress}% carregados (${state.loaded}/${state.total})`);
         }
-        
-        // Aqui você pode adicionar lógica para mostrar uma barra de progresso visual
     }
 
     /**
@@ -200,5 +200,6 @@ const ComponentLoader = (function() {
 
 // Auto-inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM carregado, iniciando ComponentLoader...");
     ComponentLoader.init();
 });
