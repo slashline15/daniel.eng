@@ -1,191 +1,124 @@
-<section id="projects" class="projects">
+<section id="projects" class="project-gallery-section">
     <div class="container">
-        <div class="section-header">
-            <h2>Projetos Recentes</h2>
+        <div class="gallery-header">
+            <h2>Projetos</h2>
             <div class="section-line"></div>
-            <p class="section-subtitle">Conheça nossos projetos inovadores de automação e construção</p>
+            <p>Conheça meus projetos de engenharia civil, automação e IA aplicada à construção.</p>
         </div>
         
-        <div class="projects-filter">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="automation">Automação</button>
-            <button class="filter-btn" data-filter="construction">Construção</button>
-            <button class="filter-btn" data-filter="planning">Planejamento</button>
-        </div>
-        
-        <!-- Galeria de Slideshow -->
-        <div class="projects-showcase">
-            <div class="projects-gallery">
-                <div class="gallery-container">
-                    <!-- Itens da galeria -->
-                    <div class="gallery-item active" data-index="0">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                            alt="Sistema de Automação Predial">
-                    </div>
-                    <div class="gallery-item" data-index="1">
-                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                            alt="Projeto Residencial Inteligente">
-                    </div>
-                    <div class="gallery-item" data-index="2">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                            alt="Sistema de Planejamento de Recursos">
-                    </div>
-                    <div class="gallery-item" data-index="3">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                            alt="Projeto Comercial">
-                    </div>
-                    <div class="gallery-item" data-index="4">
-                        <img src="https://images.unsplash.com/photo-1533417173168-85ea7372f567?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                            alt="Automação Industrial">
-                    </div>
-                </div>
-                
-                <!-- Navegação da galeria -->
-                <div class="gallery-navigation">
-                    <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="gallery-dots">
-                        <span class="gallery-dot active" data-index="0"></span>
-                        <span class="gallery-dot" data-index="1"></span>
-                        <span class="gallery-dot" data-index="2"></span>
-                        <span class="gallery-dot" data-index="3"></span>
-                        <span class="gallery-dot" data-index="4"></span>
-                    </div>
-                    <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+        <!-- Filtros de Categoria -->
+        <div class="gallery-filters">
+            <!-- Serão gerados dinamicamente pelo JS -->
         </div>
         
         <!-- Grid de Projetos -->
-        <div class="projects-grid">
-            <div class="project-item tilt-card" data-category="automation" data-index="0">
-                <div class="project-img">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Sistema de Automação Predial">
-                    <div class="project-overlay">
-                        <div class="project-info">
-                            <h4>Sistema de Automação Predial</h4>
-                            <p>Automação com IA para gerenciamento de recursos</p>
-                            <a href="#" class="project-link" data-index="0"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
+        <div class="project-gallery-grid">
+            <!-- Projeto 1 -->
+            <div class="gallery-item" 
+                 data-id="1"
+                 data-title="Edifício Comercial Inteligente" 
+                 data-category="automacao" 
+                 data-description="Projeto completo de automação predial com integração de IA para gerenciamento de recursos. O sistema monitora e otimiza em tempo real o consumo de energia, climatização e iluminação, resultando em economia de 30% nos custos operacionais."
+                 data-date="Outubro 2023"
+                 data-client="ABC Empreendimentos"
+                 data-location="Manaus, AM"
+                 data-tags="Automação,IA,Eficiência Energética,Predial">
+                <img src="images/projects/project1.jpg" alt="Edifício Comercial Inteligente">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Edifício Comercial Inteligente</h3>
+                    <span class="gallery-item-category">Automação</span>
                 </div>
             </div>
             
-            <div class="project-item tilt-card" data-category="construction" data-index="1">
-                <div class="project-img">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Projeto Residencial Inteligente">
-                    <div class="project-overlay">
-                        <div class="project-info">
-                            <h4>Projeto Residencial Inteligente</h4>
-                            <p>Sistema integrado para controle de iluminação e energia</p>
-                            <a href="#" class="project-link" data-index="1"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
+            <!-- Projeto 2 -->
+            <div class="gallery-item" 
+                 data-id="2"
+                 data-title="Residencial Eco Smart" 
+                 data-category="residencial" 
+                 data-description="Projeto residencial de alto padrão com foco em sustentabilidade e automação. Integramos painéis solares, sistema de captação de água pluvial e automação completa para conforto e eficiência."
+                 data-date="Junho 2023"
+                 data-client="Silva Incorporadora"
+                 data-location="São Paulo, SP"
+                 data-tags="Residencial,Sustentabilidade,Smart Home">
+                <img src="images/projects/project2.jpg" alt="Residencial Eco Smart">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Residencial Eco Smart</h3>
+                    <span class="gallery-item-category">Residencial</span>
                 </div>
             </div>
             
-            <div class="project-item tilt-card" data-category="planning" data-index="2">
-                <div class="project-img">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Sistema de Planejamento de Recursos">
-                    <div class="project-overlay">
-                        <div class="project-info">
-                            <h4>Sistema de Planejamento de Recursos</h4>
-                            <p>Software de otimização para cronogramas de obras</p>
-                            <a href="#" class="project-link" data-index="2"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
+            <!-- Projeto 3 -->
+            <div class="gallery-item" 
+                 data-id="3"
+                 data-title="Sistema de Planejamento IA" 
+                 data-category="software" 
+                 data-description="Desenvolvimento de software especializado para planejamento e gestão de recursos em obras, utilizando algoritmos de IA para prever atrasos e otimizar alocação de recursos. Implementação resultou em redução de 22% no desperdício de materiais."
+                 data-date="Agosto 2023"
+                 data-client="Construtech Brasil"
+                 data-location="Rio de Janeiro, RJ"
+                 data-tags="Software,IA,Planejamento,Otimização">
+                <img src="images/projects/project3.jpg" alt="Sistema de Planejamento IA">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Sistema de Planejamento IA</h3>
+                    <span class="gallery-item-category">Software</span>
                 </div>
             </div>
             
-            <div class="project-item tilt-card" data-category="construction" data-index="3">
-                <div class="project-img">
-                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Projeto Comercial">
-                    <div class="project-overlay">
-                        <div class="project-info">
-                            <h4>Projeto Comercial</h4>
-                            <p>Automação completa de edifício corporativo</p>
-                            <a href="#" class="project-link" data-index="3"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
+            <!-- Projeto 4 -->
+            <div class="gallery-item" 
+                 data-id="4"
+                 data-title="Centro Comercial Plaza" 
+                 data-category="comercial" 
+                 data-description="Projeto e execução de centro comercial com 15 andares, incorporando tecnologias de automação para controle de acesso, segurança e climatização. O sistema inteligente proporcionou certificação LEED Gold após implementação."
+                 data-date="Novembro 2023"
+                 data-client="Shopping Centers S.A."
+                 data-location="Brasília, DF"
+                 data-tags="Comercial,Automação,LEED,Shopping">
+                <img src="images/projects/project4.jpg" alt="Centro Comercial Plaza">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Centro Comercial Plaza</h3>
+                    <span class="gallery-item-category">Comercial</span>
                 </div>
             </div>
             
-            <div class="project-item tilt-card" data-category="automation" data-index="4">
-                <div class="project-img">
-                    <img src="https://images.unsplash.com/photo-1533417173168-85ea7372f567?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Automação Industrial">
-                    <div class="project-overlay">
-                        <div class="project-info">
-                            <h4>Automação Industrial</h4>
-                            <p>Sistema de monitoramento para construção pesada</p>
-                            <a href="#" class="project-link" data-index="4"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
+            <!-- Projeto 5 -->
+            <div class="gallery-item" 
+                 data-id="5"
+                 data-title="Monitoramento Industrial" 
+                 data-category="industrial" 
+                 data-description="Sistema de monitoramento e automação para construção industrial, utilizando drones e IoT para coletar dados em tempo real. A implementação resultou em aumento de 50% na segurança do canteiro e redução de 28% em retrabalhos."
+                 data-date="Fevereiro 2023"
+                 data-client="Indústrias Reunidas"
+                 data-location="Salvador, BA"
+                 data-tags="Industrial,IoT,Drones,Monitoramento">
+                <img src="images/projects/project5.jpg" alt="Monitoramento Industrial">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Monitoramento Industrial</h3>
+                    <span class="gallery-item-category">Industrial</span>
                 </div>
             </div>
+            
+            <!-- Projeto 6 -->
+            <div class="gallery-item" 
+                 data-id="6"
+                 data-title="Hospital Inteligente" 
+                 data-category="automacao" 
+                 data-description="Projeto de automação para complexo hospitalar, incluindo controle de acesso biométrico, monitoramento de pacientes via IoT e gestão inteligente de recursos hospitalares, resultando em 35% de aumento na eficiência operacional."
+                 data-date="Janeiro 2024"
+                 data-client="Rede Hospitalar Norte"
+                 data-location="Manaus, AM"
+                 data-tags="Saúde,Automação,IoT,Hospitalar">
+                <img src="images/projects/project6.jpg" alt="Hospital Inteligente">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Hospital Inteligente</h3>
+                    <span class="gallery-item-category">Automação</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Paginação -->
+        <div class="gallery-pagination">
+            <!-- Será gerado dinamicamente pelo JS -->
         </div>
     </div>
 </section>
-
-<!-- Modal de Projeto -->
-<div id="projectModal" class="project-modal">
-    <div class="project-modal-content">
-        <span class="close-project-modal">&times;</span>
-        <div class="project-modal-container">
-            <div class="project-modal-image">
-                <img src="" alt="Detalhes do Projeto" id="modalImage">
-            </div>
-            <div class="project-modal-details">
-                <h3 id="modalTitle">Título do Projeto</h3>
-                <p id="modalDescription">Descrição detalhada do projeto vai aqui...</p>
-                
-                <div class="project-specs">
-                    <div class="project-spec-item">
-                        <i class="fas fa-calendar"></i>
-                        <div class="spec-info">
-                            <span class="spec-label">Data</span>
-                            <span class="spec-value" id="modalDate">Janeiro 2023</span>
-                        </div>
-                    </div>
-                    <div class="project-spec-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="spec-info">
-                            <span class="spec-label">Localização</span>
-                            <span class="spec-value" id="modalLocation">Manaus, AM</span>
-                        </div>
-                    </div>
-                    <div class="project-spec-item">
-                        <i class="fas fa-tag"></i>
-                        <div class="spec-info">
-                            <span class="spec-label">Categoria</span>
-                            <span class="spec-value" id="modalCategory">Automação</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-technologies">
-                    <h4>Tecnologias</h4>
-                    <div class="tech-tags" id="modalTech">
-                        <span class="tech-tag">IA</span>
-                        <span class="tech-tag">IoT</span>
-                        <span class="tech-tag">Automação</span>
-                    </div>
-                </div>
-                
-                <div class="project-results">
-                    <h4>Resultados</h4>
-                    <ul id="modalResults">
-                        <li>Redução de 30% nos custos operacionais</li>
-                        <li>Aumento de 25% na eficiência energética</li>
-                        <li>Implementação em 45 dias</li>
-                    </ul>
-                </div>
-                
-                <a href="#contact" class="btn btn-primary">Solicitar um Projeto Similar</a>
-            </div>
-        </div>
-    </div>
-</div>

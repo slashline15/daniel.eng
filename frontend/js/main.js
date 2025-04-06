@@ -33,7 +33,7 @@ function initializeAllModules() {
     // 3. Inicializa outros módulos
     if (typeof Navigation !== 'undefined') Navigation.init();
     if (typeof SmoothScroll !== 'undefined') SmoothScroll.init();
-    if (typeof ProjectFilter !== 'undefined') ProjectFilter.init();
+    if (typeof ProjectGallery !== 'undefined') ProjectGallery.init();
     if (typeof TestimonialSlider !== 'undefined') TestimonialSlider.init();
     if (typeof CreativeModal !== 'undefined') CreativeModal.init();
     if (typeof ClippyAssistant !== 'undefined') ClippyAssistant.init();
