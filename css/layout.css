@@ -1,0 +1,35 @@
+/* layout.css */
+/* Contém regras de layout gerais, como para o container, seções, etc. */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+section {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Cabeçalho de Seção */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+    position: relative;
+    display: inline-block;
+}
+
+.section-line {
+    height: 4px;
+    width: 70px;
+    background-color: var(--primary-color);
+    margin: 0 auto;
+    margin-top: var(--spacing-xs);
+}

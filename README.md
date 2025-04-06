@@ -206,4 +206,5 @@ Para garantir performance ideal:
 
 ---
 
+>>>>>>> cc968f3f5b4353c37b50d7cbc85369dd05bee2d7
 *Este documento serve como guia para entender a estrutura modular do projeto e como realizar manutenção e extensão do sistema. A modularização é fundamental para o desenvolvimento eficiente e sustentável deste site.*

@@ -1,0 +1,28 @@
+.stats-section {
+    background-color: var(--primary-color);
+    padding: var(--spacing-lg) 0;
+    color: white;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.stat-counter {
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.stat-counter i {
+    font-size: 9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.counter {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: var(--spacing-xs);
+}

@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Script para iniciar o backend do assistente

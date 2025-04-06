@@ -74,3 +74,4 @@ Para usar uma API externa como OpenAI ou outra solução de IA conversacional:
 ## Personalização
 
 Adicione novos padrões de detecção de intenções e respostas no arquivo `assistant.py`.
+

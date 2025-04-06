@@ -1,3 +1,4 @@
+
 import os
 import re
 import json
@@ -143,4 +144,4 @@ if __name__ == "__main__":
     # Para testes
     assistant = EnhancedAssistant(use_api=False)
     print(assistant.process_message("Olá, como posso solicitar um orçamento?"))
-    print(assistant.process_message("Você trabalha com automação?"))
+        print(assistant.process_message("Você trabalha com automação?"))
