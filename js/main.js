@@ -62,6 +62,9 @@ function initializeAllModules() {
     initializeModule('EconomySimulator');
     initializeModule('Particles');
 
+    if (typeof BackgroundEffects !== 'undefined') BackgroundEffects.init();
+    if (typeof AIAssistant !== 'undefined') AIAssistant.init();
+
     console.log('Todos os módulos inicializados com sucesso!');
     window.modulesInitialized = true;
     

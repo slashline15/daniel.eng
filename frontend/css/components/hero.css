@@ -35,7 +35,7 @@
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--dark-primary-text-color);
     margin-bottom: var(--spacing-xs);
     animation: fadeIn 1s ease-out;
 }

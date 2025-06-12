@@ -1,0 +1,203 @@
+/**
+ * Efeitos Glassmorphism
+ * Painéis translúcidos com blur
+ */
+
+/* ===== CLASSE BASE GLASSMORPHISM ===== */
+.glass-panel {
+    background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(var(--glass-blur, 20px));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 20px));
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brilho sutil no topo */
+.glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.2) 80%,
+        transparent
+    );
+    opacity: 0.6;
+}
+
+/* Hover com elevação */
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px var(--orange-glow, rgba(255, 107, 53, 0.2)),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+/* ===== APLICAÇÃO EM COMPONENTES DARK MODE ===== */
+
+/* Cards de testemunhos */
+body.dark-mode .testimonial-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards de projetos */
+body.dark-mode .project-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+}
+
+/* Cards de habilidades */
+body.dark-mode .skill-card,
+body.dark-mode .skills-category {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+/* Formulário de contato */
+body.dark-mode .contact-form {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+/* Inputs com glass */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: var(--orange-primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Modal de projetos */
+body.dark-mode .project-modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+}
+
+/* ===== VARIAÇÕES DE INTENSIDADE ===== */
+
+/* Glass leve */
+.glass-light {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glass médio (padrão) */
+.glass-medium {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass intenso */
+.glass-heavy {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Glass colorido (laranja) */
+.glass-orange {
+    background: rgba(255, 107, 53, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* ===== FALLBACK PARA BROWSERS SEM SUPORTE ===== */
+@supports not (backdrop-filter: blur(20px)) {
+    .glass-panel,
+    body.dark-mode .testimonial-content,
+    body.dark-mode .project-card,
+    body.dark-mode .skill-card {
+        background: rgba(20, 20, 20, 0.95);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Aviso sutil para o usuário */
+    .glass-panel::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.01) 10px,
+                rgba(255, 255, 255, 0.01) 20px
+            );
+        pointer-events: none;
+    }
+}
+
+/* ===== PERFORMANCE - REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .glass-panel,
+    .glass-panel:hover {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+    /* Reduz blur em mobile para melhor performance */
+    :root {
+        --glass-blur: 10px;
+    }
+    
+    .glass-panel {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Remove hover effects em touch */
+    @media (hover: none) {
+        .glass-panel:hover {
+            transform: none;
+        }
+    }
+}

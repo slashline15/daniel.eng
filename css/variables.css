@@ -7,11 +7,17 @@
        CORES - PALETA PRINCIPAL
        ====================================== */
     
+   /* Dark Orange Theme */
+   --dark-bg: #0a0a0a;
+   --orange-primary: #ff6b35;
+   --glass-bg: rgba(255, 255, 255, 0.05);
+   --glass-blur: 20px;
+
     /* Cores Primárias */
-    --primary-color: #4285f4;
+    --primary-color: #ec7412;
     --primary-color-rgb: 66, 133, 244;
-    --primary-dark: #3367d6;
-    --primary-light: #7baaf7;
+    --primary-dark: #d36229;
+    --primary-light: #ff6b35;
     
     /* Cores Secundárias */
     --secondary-color: #34a853;  
@@ -26,7 +32,7 @@
     --error-rgb: 234, 67, 53;
     --success: #34a853;
     --warning: #fbbc05;
-    --info: #4285f4;
+    --info: #ff6b35;
     
     /* ======================================
        CORES - TEMA CLARO (PADRÃO)
@@ -64,6 +70,27 @@
     /* Bordas e Divisores - Tema Escuro */
     --dark-border-color: #444444;
     --dark-divider-color: rgba(255, 255, 255, 0.1);
+
+    /* Adicionar ao arquivo existente */
+    /* === NOVO: Esquema Dark Orange === */
+    --dark-bg: #0a0a0a;
+    --dark-surface: #141414;
+    --dark-card: rgba(20, 20, 20, 0.7);
+    
+    /* Laranja vibrante */
+    --orange-primary: #ff6b35;
+    --orange-light: #ff8c42;
+    --orange-dark: #e55a2b;
+    --orange-glow: rgba(255, 107, 53, 0.4);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 20px;
+    
+    /* Manter compatibilidade */
+    --primary-color: var(--orange-primary);
+    --primary-color-rgb: 255, 107, 53;
     
     /* ======================================
        TIPOGRAFIA

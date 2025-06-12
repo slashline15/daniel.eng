@@ -17,8 +17,15 @@ const ComponentLoader = (function() {
         'contact-container': 'contact-section.html',
         'creative-modal-container': 'creative-modal.html',
         'footer-container': 'footer.html',
-        'clippy-container': 'clippy-assistant.html'
+        'clippy-container': 'clippy-assistant.html',
+        'containerId': 'ai-assistant-container',
+        'componentPath': 'components/ai-assistant.html'
     };
+
+    // {
+    //     'containerId'; 'ai-assistant-container',
+    //     'componentPath'; 'components/ai-assistant.html'
+    // };
 
     // Estado do carregador
     const state = {

@@ -15,11 +15,18 @@
 /* Layout Base e Grid */
 @import 'layout.css';
 
+/* Omportes para dark orange*/
+@import url('effects/glassmorphism.css');
+@import url('effects/background.css');
+@import url('components/ai-assistant.css');
+
 /* ======================================
    2. COMPONENTES (ordem alfabética)
    ====================================== */
 
 /* Componentes da Interface */
+
+
 @import 'components/about.css';
 @import 'components/clippy.css';
 @import 'components/contact.css';
